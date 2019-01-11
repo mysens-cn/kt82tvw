@@ -1,7 +1,7 @@
 # MYNRF24
 mysensor nrf24 with battery cr2032/cr2450 
 
-PCB尺寸 : 39.12mm*20.57mm 支持沿虚线切割，切割后使用尺寸20.57mmm*20.06mm
+PCB尺寸 : 39.12mmX20.57mm 支持沿虚线切割，切割后使用尺寸20.57mmmX20.06mm
 
 ## PIC
 ### Front pic
