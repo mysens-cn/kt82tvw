@@ -8,6 +8,8 @@ mysensor nrf24 with battery cr2032/cr2450
 
 3.I2C由于不同的芯片，对电压要求较高，特别是BH1750，另外CR2032极限电流输出在15ma会产生大量压降导致电池无法完全使用完，200mah可能只能使用掉150？未知，目前靠代码能轻微解决
 
+```
+
 ## QQ讨论群
 
 ![mynrf24-front](https://github.com/huexpub/MYNRF24/blob/master/doc/Mysenso-QQ.png)
