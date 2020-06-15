@@ -17,10 +17,13 @@
 // #define MY_OTA_FIRMWARE_FEATURE
 // #define MY_REPEATER_FEATURE //注释下列启用中继功能
 
+#define MY_PARENT_NODE_IS_STATIC
+#define MY_PARENT_NODE_ID 23
+
 //#define MY_NODE_ID 30
 
 char SKETCH_NAME[] = "KT82 Covers";
-char SKETCH_VERSION[] = "1.0";
+char SKETCH_VERSION[] = "1.1";
 /*
   55 FE FE 03 02 F9 25     关   00 00
   55 FE FE 03 01 B9 24    开 00 00
@@ -48,6 +51,7 @@ char buffer[MAXBUF];
 int pos;
 
 int lastpos = 0;
+// poscount = 0 代表无动作
 int poscount;
 char posmsg;
 char gwhex;
@@ -118,6 +122,7 @@ void setup() {
   }
 }
 
+// 向控制器上报设备类型
 void presentation()  {
   // Send the sketch version information to the gateway and Controller
   sendSketchInfo(SKETCH_NAME, SKETCH_VERSION);
@@ -126,10 +131,12 @@ void presentation()  {
   wait(100);
 }
 
+// 主循环
 void loop() {
   posloop();
   posvalue();
 }
+
 
 void posloop() {
   unsigned long lastCharTime = 0;
@@ -181,6 +188,29 @@ void posvalue()
 }
 
 void receive(const MyMessage & message) {
+  // 场景按钮触发
+  if (message.type == V_SCENE_ON ) {
+    if ( poscount == 0 )
+    {
+      if ( pos > 50)
+      {
+        // 执行关闭动作
+        mySerial.write(requesclose, sizeof(requesclose));
+        // Serial.println("CLOSE");
+      }
+      else{
+        // 执行开启动作
+        mySerial.write(requestopen, sizeof(requestopen));
+        // Serial.println("OPEN");
+      }
+    }
+    else {
+      // 执行停止动作
+      mySerial.write(requeststop, sizeof(requeststop));
+      // Serial.println("STOP");
+    }
+  }
+
   if (message.type == V_UP) {
     mySerial.write(requestopen, sizeof(requestopen));
   }
