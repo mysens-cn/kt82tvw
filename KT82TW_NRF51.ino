@@ -23,7 +23,7 @@
 //#define MY_NODE_ID 30
 
 char SKETCH_NAME[] = "KT82 Covers";
-char SKETCH_VERSION[] = "1.1";
+char SKETCH_VERSION[] = "1.2";
 /*
   55 FE FE 03 02 F9 25     关   00 00
   55 FE FE 03 01 B9 24    开 00 00
@@ -173,9 +173,9 @@ void posvalue()
     //    Serial.println(pos);
     if (pos >= 0 && pos <= 100 ) {
       if (lastpos != pos ) {
-      	char kpos[4];
-    	itoa(pos, kpos, 10);
-    	wait(100);
+        char kpos[4];
+      itoa(pos, kpos, 10);
+      wait(100);
         send(PosMessage.set(kpos));
         wait(100);
         lastpos = pos;
@@ -190,24 +190,26 @@ void posvalue()
 void receive(const MyMessage & message) {
   // 场景按钮触发
   if (message.type == V_SCENE_ON ) {
-    if ( poscount == 0 )
-    {
-      if ( pos > 50)
+    if (message.sensor == CHILD_ID){
+      if ( poscount == 0 )
       {
-        // 执行关闭动作
-        mySerial.write(requesclose, sizeof(requesclose));
-        // Serial.println("CLOSE");
+        if ( pos > 50)
+        {
+          // 执行关闭动作
+          mySerial.write(requesclose, sizeof(requesclose));
+          // Serial.println("CLOSE");
+        }
+        else{
+          // 执行开启动作
+          mySerial.write(requestopen, sizeof(requestopen));
+          // Serial.println("OPEN");
+        }
       }
-      else{
-        // 执行开启动作
-        mySerial.write(requestopen, sizeof(requestopen));
-        // Serial.println("OPEN");
+      else {
+        // 执行停止动作
+        mySerial.write(requeststop, sizeof(requeststop));
+        // Serial.println("STOP");
       }
-    }
-    else {
-      // 执行停止动作
-      mySerial.write(requeststop, sizeof(requeststop));
-      // Serial.println("STOP");
     }
   }
 
