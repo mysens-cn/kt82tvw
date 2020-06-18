@@ -17,8 +17,9 @@
 // #define MY_OTA_FIRMWARE_FEATURE
 // #define MY_REPEATER_FEATURE //注释下列启用中继功能
 
-#define MY_PARENT_NODE_IS_STATIC
-#define MY_PARENT_NODE_ID 23
+// 指定静态上级节点
+// #define MY_PARENT_NODE_IS_STATIC
+// #define MY_PARENT_NODE_ID 23
 
 //#define MY_NODE_ID 30
 
