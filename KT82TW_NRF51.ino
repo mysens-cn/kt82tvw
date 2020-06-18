@@ -114,6 +114,7 @@ void sendState() {
 }
 
 void setup() {
+  pinMode(LED_PIN,OUTPUT);
   blinkity(2,3);
   mySerial.begin(9600);
   Serial.begin(9600);
