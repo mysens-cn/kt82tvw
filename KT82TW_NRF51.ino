@@ -23,7 +23,7 @@
 //#define MY_NODE_ID 30
 
 char SKETCH_NAME[] = "KT82 Covers";
-char SKETCH_VERSION[] = "1.2";
+char SKETCH_VERSION[] = "1.3";
 /*
   55 FE FE 03 02 F9 25     关   00 00
   55 FE FE 03 01 B9 24    开 00 00
@@ -64,7 +64,7 @@ char gwhex;
 SoftwareSerial mySerial(3, 4); // RX, TX
 // Actuators for moving the cover up and down respectively.
 #define CHILD_ID 11
-#define  LED_PIN  8  //battery  sensor
+#define  LED_PIN  12  //battery  sensor
 
 MyMessage OpenMessage(CHILD_ID, V_UP);
 MyMessage CloseMessage(CHILD_ID, V_DOWN);

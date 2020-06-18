@@ -119,7 +119,7 @@ static const uint8_t A7  = ADC_A7;
  * If you have no serial port, use unused pins
  * CTS and RTS are optional.
  */
-#define PIN_SERIAL_RX       (12)
+#define PIN_SERIAL_RX       (13)
 #define PIN_SERIAL_TX       (11)
 // #define PIN_SERIAL_CTS      (13)
 // #define PIN_SERIAL_RTS      (14)

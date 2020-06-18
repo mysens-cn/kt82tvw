@@ -1,4 +1,7 @@
 # Change Log
+## [1.3]
+## Fixed
+- 修复 LED 灯不亮问题。
 
 ## [1.2]
 ## Fixed
